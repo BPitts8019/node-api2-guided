@@ -1,18 +1,12 @@
 const express = require("express");
+const welcomeRouter = require("./routers/welcome");
 const hubRouter = require("./routers/hub");
 
 const server = express();
 
 server.use(express.json());
 
-server.get("/", (req, res) => {
-   res.send("<h2>Welcome to the Lambda Hubs API</h>");
-});
-
-server.get("/api", (req, res) => {
-   res.json({ message: "Welcome to the Hubs API" });
-});
-
+server.use("/", welcomeRouter);
 server.use("/api/hubs", hubRouter);
 // add an endpoint that returns all the messages for a hub
 // add an endpoint for adding new message to a hub
