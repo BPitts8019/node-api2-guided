@@ -14,8 +14,12 @@ server.get("/api", (req, res) => {
 });
 
 server.get("/api/hubs", (req, res) => {
+   const options = {
+      ...req.query,
+   };
+
    hubs
-      .find()
+      .find(options)
       .then((hubs) => {
          res.status(200).json(hubs);
       })
